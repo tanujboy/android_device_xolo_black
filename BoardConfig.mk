@@ -25,17 +25,18 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno405
 TARGET_BOOTLOADER_BOARD_NAME := black
 
 # kernel
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x80000000
+BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --dt device/xolo/black/dt.img
 BOARD_KERNEL_PAGESIZE := 2048
 
-BOARD_KERNEL_IMAGE_NAME := Image
-TARGET_KERNEL_SOURCE := kernel/xolo/black
-TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
-TARGET_KERNEL_HEADER_ARCH := arm64
+# BOARD_KERNEL_IMAGE_NAME := Image
+# TARGET_KERNEL_SOURCE := kernel/xolo/black
+# TARGET_KERNEL_ARCH := arm64
+# TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+# TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_USES_UNCOMPRESSED_KERNEL := true
-TARGET_KERNEL_CONFIG := mirageplus01a_msm_defconfig
+# TARGET_KERNEL_CONFIG := mirageplus01a_msm_defconfig
 
 # fix this up by examining /proc/mtd on a running device
 BOARD_BOOTIMAGE_PARTITION_SIZE := 17000000
@@ -48,8 +49,6 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 RECOVERY_VARIANT:= twrp
 TW_THEME:= portrait_hdpi
 RECOVERY_SDCARD_ON_DATA:= true
-DEVICE_RESOLUTION:= 1080x1920
-BOARD_KERNEL_CMDLINE:= androidboot.selinux=permissive
 
 TARGET_PREBUILT_KERNEL := device/xolo/black/kernel
 
